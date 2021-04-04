@@ -12,7 +12,6 @@ exports.handler = async function(event, context) {
     statusCode: 200,
     body: JSON.stringify({
       message: 'hello',
-      storageBucketName: STORAGE_BUCKETNAME,
       bucketName: STORAGE_BUCKETNAME,
       apiKey: GOOGLE_API_KEY,
       path
