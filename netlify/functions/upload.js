@@ -8,6 +8,15 @@ const storage = new Storage();
 exports.handler = async function(event, context) {
   const { path, body, httpMethod } = event;
 
+  if (
+    !/post/i.test(httpMethod) ||
+    !(body instanceof File)
+  ) {
+    return {
+      statusCode: 401
+    }
+  }
+
   return {
     statusCode: 200,
     body: JSON.stringify({
@@ -15,7 +24,9 @@ exports.handler = async function(event, context) {
       bucketName: STORAGE_BUCKETNAME,
       apiKey: GOOGLE_API_KEY,
       path,
-      body
+      body,
+      fileName: body.name,
+      filePath: File.path
     })
   };
 }
