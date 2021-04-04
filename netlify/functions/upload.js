@@ -43,8 +43,9 @@ exports.handler = async function(event, context) {
 
   const file = myBucket.file(destFileName);
 
-  file.save(Buffer.from(body, isBase64Encoded ? 'base64' : 'utf8'), function(err, res) {
-    return !err ? success(res) : error(err.toString());
-  });
+  // file.save(Buffer.from(body, isBase64Encoded ? 'base64' : 'utf8'), function(err, res) {
+  //   return !err ? success(res) : error(err.toString());
+  // });
+  return success('haha');
 
 }
