@@ -8,20 +8,20 @@ const storage = new Storage();
 function error(message) {
   return {
     statusCode: 200,
-    body: {
+    body: JSON.stringify({
       success: false,
       message
-    }
+    })
   }
 }
 
 function success(data) {
   return {
     statusCode: 200,
-    body: {
+    body: JSON.stringify({
       success: true,
       data
-    }
+    })
   }
 }
 
@@ -43,9 +43,8 @@ exports.handler = async function(event, context) {
 
   const file = myBucket.file(destFileName);
 
-  // file.save(Buffer.from(body, isBase64Encoded ? 'base64' : 'utf8'), function(err, res) {
-  //   return !err ? success(res) : error(err.toString());
-  // });
-  return success('haha');
+  file.save(Buffer.from(body, isBase64Encoded ? 'base64' : 'utf8'), function(err, res) {
+    return !err ? success(res) : error(err.toString());
+  });
 
 }
