@@ -47,7 +47,7 @@ exports.handler = async function(event, context) {
     const result = await file.save(Buffer.from(body, isBase64Encoded ? 'base64' : 'utf8'));
     return success(res);
   } catch(err) {
-    return error(err);
+    return error(err.toString());
   }
 
 }
