@@ -6,4 +6,11 @@ const storage = new Storage();
 exports.handler = async function(event, context) {
   const { path, body } = event;
   console.log(path, body);
+  return {
+    statusCode: 200,
+    body: JSON.stringify({
+      message: 'hello',
+      path
+    })
+  };
 }
