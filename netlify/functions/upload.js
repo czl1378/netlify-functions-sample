@@ -9,8 +9,7 @@ exports.handler = async function(event, context) {
   const { path, body, httpMethod } = event;
 
   if (
-    !/post/i.test(httpMethod) ||
-    !(body instanceof File)
+    !/post/i.test(httpMethod)
   ) {
     return {
       statusCode: 401
