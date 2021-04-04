@@ -43,10 +43,11 @@ exports.handler = async function(event, context) {
 
   const file = myBucket.file(destFileName);
 
-  return await Promise((resolve) => {
-    file.save(Buffer.from(body, isBase64Encoded ? 'base64' : 'utf8'), function(err, res) {
-      resolve(!err ? success(res) : error(err.toString()));
-    });
-  });
+  try {
+    const result = await file.save(Buffer.from(body, isBase64Encoded ? 'base64' : 'utf8'));
+    return success(res);
+  } catch(err) {
+    return error(err);
+  }
 
 }
