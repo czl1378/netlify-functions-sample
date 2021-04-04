@@ -26,7 +26,8 @@ exports.handler = async function(event, context) {
       path,
       body,
       fileName: body.name,
-      filePath: File.path
+      filePath: body.path,
+      bodyType: typeof body
     })
   };
 }
