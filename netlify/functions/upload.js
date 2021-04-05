@@ -1,9 +1,13 @@
 const { Storage } = require('@google-cloud/storage');
 
 const STORAGE_BUCKETNAME = process.env.STORAGE_BUCKETNAME || 'dl-testnet';
-const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
-const storage = new Storage();
+const storage = new Storage({
+  credentials: {
+    client_email: process.env.GCP_CLIENT_EMAIL,
+    private_key: process.env.GCP_PRIVATE_KEY.split("\\n").join("\n")
+  }
+});
 
 function error(message) {
   return {
